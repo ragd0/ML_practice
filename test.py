@@ -44,8 +44,8 @@ if __name__ == "__main__":
     #データセットとデータローダー
     train_dataset = AirDataset(X_train, y_train)
     test_dataset = AirDataset(X_test, y_test)
-    train_dataloader = DataLoader(train_dataset, batch_size=256, shuffle=False)
-    test_dataloader = DataLoader(test_dataset, batch_size=256, shuffle=False)
+    train_dataloader = DataLoader(train_dataset, batch_size=64, shuffle=False)
+    test_dataloader = DataLoader(test_dataset, batch_size=64, shuffle=False)
     
     #モデル
     model = Net()
@@ -68,9 +68,9 @@ if __name__ == "__main__":
             
             running_loss += loss.item()
 
-            if train_batch_idx % 200 == 199:    # 2,000ミニバッチにつき1度表示
+            if train_batch_idx % 1000 == 999:    # 2,000ミニバッチにつき1度表示
                 print('[%d, %5d] loss: %.3f' %
-                    (epoch + 1, train_batch_idx + 1, running_loss / 200))
+                    (epoch + 1, train_batch_idx + 1, running_loss / 1000))
                 running_loss = 0.0
         scheduler.step()
         
